@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
-from resp import parse
+from tools import parse
 app = Flask(__name__)
-
 
 @app.route("/home", methods=['GET', 'POST'])
 def home():
