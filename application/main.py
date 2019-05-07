@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from utils.tools import parse
+from utils.tools import *
 app = Flask(__name__)
 
 @app.route("/home", methods=['GET', 'POST'])
@@ -10,8 +10,8 @@ def home():
 @app.route("/result", methods=['GET', 'POST'])
 def main():
     req = request.form
-    first, last, age = req.get("first_name"), req.get("last_name"), req.get("age")
-    req = {"full_name": parse(first, last, age), "age": age}
+    num_passenger, drop, pick = req.get("num_passengers"), req.get("dropoff"), req.get("pickup")
+    req = {"fare": parse(num_passenger, drop, pick)}
     return render_template("result.html", result=req)
 
 
